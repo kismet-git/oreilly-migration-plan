@@ -12,7 +12,7 @@ export default function CursorGuidePage() {
             <CardDescription>Best practices and workflows for using Cursor in the migration project</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground leading-relaxed">
               This section contains comprehensive guidelines for using Cursor effectively throughout the migration
               process.
             </p>
@@ -22,7 +22,7 @@ export default function CursorGuidePage() {
         <div className="space-y-6">
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold text-foreground">Migration Phase Challenges</h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground leading-relaxed">
               Comprehensive Cursor strategies organized by project phase, with beginner and advanced prompts for each
               challenge.
             </p>
@@ -31,13 +31,13 @@ export default function CursorGuidePage() {
           <CursorPhaseTable />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Setup & Configuration</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Initial setup instructions and recommended configurations for optimal development workflow.
               </p>
             </CardContent>
@@ -48,7 +48,7 @@ export default function CursorGuidePage() {
               <CardTitle className="text-lg">Best Practices</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Proven methodologies and coding standards to maintain consistency across the project.
               </p>
             </CardContent>

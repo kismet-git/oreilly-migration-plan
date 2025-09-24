@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronRight, Copy } from "lucide-react"
+import { ChevronDown, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { CopyButton } from "@/components/ui/copy-button"
 
 interface CursorChallenge {
   challenge: string
@@ -154,14 +155,6 @@ export function CursorPhaseTable() {
     setExpandedPhases(newExpanded)
   }
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-    } catch (err) {
-      console.error("Failed to copy text: ", err)
-    }
-  }
-
   const getFeatureBadge = (feature: string) => {
     if (feature.includes("Codebase Chat")) {
       return (
@@ -192,14 +185,14 @@ export function CursorPhaseTable() {
       {cursorPhases.map((phase) => (
         <Card key={phase.id} className="border-border/50">
           <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-1 min-w-0 flex-1">
                 <CardTitle className="text-lg font-semibold text-foreground">{phase.title}</CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   <span className="font-medium">Objective:</span> {phase.objective}
                 </p>
               </div>
-              <Button variant="ghost" size="sm" onClick={() => togglePhase(phase.id)} className="ml-4 shrink-0">
+              <Button variant="ghost" size="sm" onClick={() => togglePhase(phase.id)} className="shrink-0">
                 {expandedPhases.has(phase.id) ? (
                   <ChevronDown className="h-4 w-4" />
                 ) : (
@@ -211,7 +204,8 @@ export function CursorPhaseTable() {
 
           {expandedPhases.has(phase.id) && (
             <CardContent className="pt-0">
-              <div className="overflow-x-auto">
+              {/* Desktop Table */}
+              <div className="hidden lg:block overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b border-border/50">
@@ -232,7 +226,7 @@ export function CursorPhaseTable() {
                           <div className="font-medium text-sm text-foreground mb-1">{challenge.challenge}</div>
                         </td>
                         <td className="p-3 align-top">
-                          <div className="text-sm text-muted-foreground">{challenge.cursorFeature}</div>
+                          <div className="text-sm text-muted-foreground leading-relaxed">{challenge.cursorFeature}</div>
                         </td>
                         <td className="p-3 align-top">
                           <div className="flex items-start gap-2">
@@ -250,20 +244,62 @@ export function CursorPhaseTable() {
                             <div className="bg-muted/50 rounded-md p-3 font-mono text-xs text-foreground border border-border/50">
                               {challenge.tier2Prompt}
                             </div>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="absolute top-1 right-1 h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                              onClick={() => copyToClipboard(challenge.tier2Prompt)}
-                            >
-                              <Copy className="h-3 w-3" />
-                            </Button>
+                            <CopyButton
+                              text={challenge.tier2Prompt}
+                              className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                            />
                           </div>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Mobile/Tablet Cards */}
+              <div className="lg:hidden space-y-4">
+                {phase.challenges.map((challenge, index) => (
+                  <Card key={index} className="border-border/30">
+                    <CardContent className="p-4 space-y-4">
+                      <div>
+                        <h4 className="font-medium text-sm text-foreground mb-2">{challenge.challenge}</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{challenge.cursorFeature}</p>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                            Tier 1 Prompt (Beginner)
+                          </p>
+                          <div className="flex flex-wrap items-start gap-2">
+                            {getFeatureBadge(challenge.tier1Prompt)}
+                            <div className="text-sm text-muted-foreground">
+                              {challenge.tier1Prompt.replace(
+                                /^(Codebase Chat|Inline Edit|Generate from Scratch)\s*($$[^)]*$$)?\s*/,
+                                "",
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                            Tier 2 Prompt (Advanced)
+                          </p>
+                          <div className="relative group">
+                            <div className="bg-muted/50 rounded-md p-3 font-mono text-xs text-foreground border border-border/50 break-words">
+                              {challenge.tier2Prompt}
+                            </div>
+                            <CopyButton
+                              text={challenge.tier2Prompt}
+                              className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </CardContent>
           )}

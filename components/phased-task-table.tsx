@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { RoleBadge } from "@/components/ui/role-badge"
+import { ToolBadge } from "@/components/ui/tool-badge"
 
 interface Task {
   id: string
@@ -22,32 +24,8 @@ interface PhasedTaskTableProps {
   phases: Phase[]
 }
 
-const roleColors: Record<string, string> = {
-  "Lead Developer": "bg-purple-600 text-white",
-  "UI/UX Designer": "bg-blue-600 text-white",
-  "Frontend Developer": "bg-orange-600 text-white",
-  "Backend Developer": "bg-green-600 text-white",
-  "SEO Strategist": "bg-emerald-600 text-white",
-  "Project Lead": "bg-indigo-600 text-white",
-  "QA Engineer": "bg-yellow-600 text-black",
-  "Content Team": "bg-pink-600 text-white",
-  "All Developers": "bg-slate-600 text-white",
-  "Entire Team": "bg-gray-600 text-white",
-}
-
-const toolColors: Record<string, string> = {
-  "VS Code + Copilot": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  ChatGPT: "bg-green-500/20 text-green-300 border-green-500/30",
-  Figma: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  "WordPress Admin": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  Docker: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
-  "Next.js": "bg-gray-500/20 text-gray-300 border-gray-500/30",
-  Vercel: "bg-black/20 text-white border-gray-500/30",
-  "WP-CLI": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-}
-
 export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
-  const [expandedPhases, setExpandedPhases] = useState<Set<string>>(new Set(phases.map((p) => p.id)))
+  const [expandedPhases, setExpandedPhases] = useState<Set<string>>(new Set())
 
   const togglePhase = (phaseId: string) => {
     const newExpanded = new Set(expandedPhases)
@@ -57,10 +35,6 @@ export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
       newExpanded.add(phaseId)
     }
     setExpandedPhases(newExpanded)
-  }
-
-  const getToolBadgeStyle = (tool: string) => {
-    return toolColors[tool] || "bg-gray-500/20 text-gray-300 border-gray-500/30"
   }
 
   return (
@@ -74,7 +48,7 @@ export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
           >
             <div className="text-left">
               <h3 className="font-semibold text-foreground">{phase.name}</h3>
-              <p className="text-sm text-muted-foreground">{phase.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
             </div>
             {expandedPhases.has(phase.id) ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
           </Button>
@@ -103,30 +77,18 @@ export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
                         }`}
                       >
                         <td className="px-4 py-3 text-sm font-mono text-muted-foreground">{task.id}</td>
-                        <td className="px-4 py-3 text-sm text-foreground">{task.description}</td>
+                        <td className="px-4 py-3 text-sm text-foreground leading-relaxed">{task.description}</td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1">
                             {task.roles.map((role, roleIndex) => (
-                              <span
-                                key={roleIndex}
-                                className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                                  roleColors[role] || "bg-gray-600 text-white"
-                                }`}
-                              >
-                                {role}
-                              </span>
+                              <RoleBadge key={roleIndex} role={role} />
                             ))}
                           </div>
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1">
                             {task.tools.map((tool, toolIndex) => (
-                              <span
-                                key={toolIndex}
-                                className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getToolBadgeStyle(tool)}`}
-                              >
-                                {tool}
-                              </span>
+                              <ToolBadge key={toolIndex} tool={tool} variant="bordered" />
                             ))}
                           </div>
                         </td>
@@ -150,20 +112,13 @@ export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
                         {task.id}
                       </span>
                     </div>
-                    <h4 className="text-sm font-medium text-foreground mb-3">{task.description}</h4>
+                    <h4 className="text-sm font-medium text-foreground mb-3 leading-relaxed">{task.description}</h4>
                     <div className="space-y-3">
                       <div>
                         <p className="text-xs font-semibold text-muted-foreground mb-1">Primary Role(s)</p>
                         <div className="flex flex-wrap gap-1">
                           {task.roles.map((role, roleIndex) => (
-                            <span
-                              key={roleIndex}
-                              className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                                roleColors[role] || "bg-gray-600 text-white"
-                              }`}
-                            >
-                              {role}
-                            </span>
+                            <RoleBadge key={roleIndex} role={role} />
                           ))}
                         </div>
                       </div>
@@ -171,12 +126,7 @@ export function PhasedTaskTable({ phases }: PhasedTaskTableProps) {
                         <p className="text-xs font-semibold text-muted-foreground mb-1">Key Tools</p>
                         <div className="flex flex-wrap gap-1">
                           {task.tools.map((tool, toolIndex) => (
-                            <span
-                              key={toolIndex}
-                              className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getToolBadgeStyle(tool)}`}
-                            >
-                              {tool}
-                            </span>
+                            <ToolBadge key={toolIndex} tool={tool} variant="bordered" />
                           ))}
                         </div>
                       </div>

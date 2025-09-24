@@ -19,7 +19,7 @@ export default function MCPWorkflowsPage() {
             <CardDescription>Automated workflows and processes using MCP for the migration project</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground leading-relaxed">
               Comprehensive MCP-powered workflows that streamline and automate key aspects of the migration process,
               from task scaffolding to deployment and quality assurance.
             </p>
@@ -29,8 +29,8 @@ export default function MCPWorkflowsPage() {
         {/* Workflow 1: AI-Powered Migration Task Scaffolding */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">### Workflow 1: AI-Powered Migration Task Scaffolding</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-xl">Workflow 1: AI-Powered Migration Task Scaffolding</CardTitle>
+            <CardDescription className="leading-relaxed">
               This workflow uses Copilot Workspace to create the initial migration script and its corresponding test
               files, handing off a complete starting point to the developer.
             </CardDescription>
@@ -38,96 +38,121 @@ export default function MCPWorkflowsPage() {
           <CardContent className="space-y-6">
             <div>
               <p className="font-semibold mb-2">Goal:</p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Automate the creation of a new, specific data migration script (e.g., for "video courses").
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h4 className="font-semibold mb-2">1. Trigger (Manual):</h4>
-                <p className="text-sm text-muted-foreground mb-3">
+                <h4 className="font-semibold mb-3">1. Trigger (Manual):</h4>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                   The Project Lead creates a new, detailed GitHub Issue.
                 </p>
 
-                <div className="space-y-2">
-                  <p className="text-sm font-medium">• Title:</p>
-                  <div className="relative">
-                    <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto">
-                      <code>Feat: Create Migration Script for Video Courses</code>
-                    </pre>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="absolute top-2 right-2 h-6 w-6 p-0"
-                      onClick={() => copyToClipboard("Feat: Create Migration Script for Video Courses")}
-                    >
-                      <Copy className="h-3 w-3" />
-                    </Button>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm font-medium mb-2">• Title:</p>
+                    <div className="relative">
+                      <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto scrollbar-thin">
+                        <code>Feat: Create Migration Script for Video Courses</code>
+                      </pre>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="absolute top-2 right-2 h-6 w-6 p-0 opacity-70 hover:opacity-100"
+                        onClick={() => copyToClipboard("Feat: Create Migration Script for Video Courses")}
+                      >
+                        <Copy className="h-3 w-3" />
+                      </Button>
+                    </div>
                   </div>
 
-                  <p className="text-sm font-medium">• Body:</p>
-                  <div className="relative">
-                    <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto">
-                      <code>{`"Create a new Node.js script in /scripts/migrations named migrate-videos.js. It needs to read from /data/legacy-videos.csv. For each row, it should map the columns video_url, title, and transcript to a new WordPress post. Create a corresponding test file in /scripts/migrations/tests using Jest."`}</code>
-                    </pre>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="absolute top-2 right-2 h-6 w-6 p-0"
-                      onClick={() =>
-                        copyToClipboard(
-                          `"Create a new Node.js script in /scripts/migrations named migrate-videos.js. It needs to read from /data/legacy-videos.csv. For each row, it should map the columns video_url, title, and transcript to a new WordPress post. Create a corresponding test file in /scripts/migrations/tests using Jest."`,
-                        )
-                      }
-                    >
-                      <Copy className="h-3 w-3" />
-                    </Button>
+                  <div>
+                    <p className="text-sm font-medium mb-2">• Body:</p>
+                    <div className="relative">
+                      <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto scrollbar-thin">
+                        <code className="break-words whitespace-pre-wrap">
+                          {`"Create a new Node.js script in /scripts/migrations named migrate-videos.js. It needs to read from /data/legacy-videos.csv. For each row, it should map the columns video_url, title, and transcript to a new WordPress post. Create a corresponding test file in /scripts/migrations/tests using Jest."`}
+                        </code>
+                      </pre>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="absolute top-2 right-2 h-6 w-6 p-0 opacity-70 hover:opacity-100"
+                        onClick={() =>
+                          copyToClipboard(
+                            `"Create a new Node.js script in /scripts/migrations named migrate-videos.js. It needs to read from /data/legacy-videos.csv. For each row, it should map the columns video_url, title, and transcript to a new WordPress post. Create a corresponding test file in /scripts/migrations/tests using Jest."`,
+                          )
+                        }
+                      >
+                        <Copy className="h-3 w-3" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">2. AI Planning (GitHub Copilot Workspace):</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h4 className="font-semibold mb-3">2. AI Planning (GitHub Copilot Workspace):</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                   <li>
                     • A developer opens the repository in Copilot Workspace and directs it to the newly created issue.
                   </li>
                   <li>
                     • Copilot analyzes the issue, scans the existing file structure (
-                    <code className="bg-muted px-1 rounded">/scripts</code> directory, existing CSV files), and
+                    <code className="bg-muted px-1 rounded text-xs">/scripts</code> directory, existing CSV files), and
                     generates a plan.
                   </li>
                 </ul>
 
-                <div className="mt-3">
-                  <p className="text-sm font-medium mb-2">The Plan:</p>
-                  <ul className="space-y-1 text-sm">
-                    <li>
-                      ✅ Create file{" "}
-                      <code className="bg-muted px-1 rounded">/scripts/migrations/migrate-videos.js</code> with
-                      boilerplate code to read the specified CSV.
+                <div className="mt-4">
+                  <p className="text-sm font-medium mb-3">The Plan:</p>
+                  <ul className="space-y-2 text-sm leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✅</span>
+                      <span>
+                        Create file{" "}
+                        <code className="bg-muted px-1 rounded text-xs">/scripts/migrations/migrate-videos.js</code>{" "}
+                        with boilerplate code to read the specified CSV.
+                      </span>
                     </li>
-                    <li>
-                      ✅ Add a placeholder function{" "}
-                      <code className="bg-muted px-1 rounded">transformVideoData(row)</code> to be filled in later.
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✅</span>
+                      <span>
+                        Add a placeholder function{" "}
+                        <code className="bg-muted px-1 rounded text-xs">transformVideoData(row)</code> to be filled in
+                        later.
+                      </span>
                     </li>
-                    <li>
-                      ✅ Add a function <code className="bg-muted px-1 rounded">createWordPressPost(data)</code> that
-                      logs the payload for now.
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✅</span>
+                      <span>
+                        Add a function <code className="bg-muted px-1 rounded text-xs">createWordPressPost(data)</code>{" "}
+                        that logs the payload for now.
+                      </span>
                     </li>
-                    <li>
-                      ✅ Create file{" "}
-                      <code className="bg-muted px-1 rounded">/scripts/migrations/tests/migrate-videos.test.js</code>.
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✅</span>
+                      <span>
+                        Create file{" "}
+                        <code className="bg-muted px-1 rounded text-xs">
+                          /scripts/migrations/tests/migrate-videos.test.js
+                        </code>
+                        .
+                      </span>
                     </li>
-                    <li>✅ Write a basic Jest test that ensures the script can be imported without errors.</li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">✅</span>
+                      <span>Write a basic Jest test that ensures the script can be imported without errors.</span>
+                    </li>
                   </ul>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">3. Execution & Handoff:</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h4 className="font-semibold mb-3">3. Execution & Handoff:</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                   <li>
                     • The developer approves the plan. Copilot Workspace executes it, creating the files and writing the
                     initial code.
@@ -145,8 +170,8 @@ export default function MCPWorkflowsPage() {
         {/* Workflow 2: Context-Aware CI/CD with Vercel */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">### Workflow 2: Context-Aware CI/CD with Vercel</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-xl">Workflow 2: Context-Aware CI/CD with Vercel</CardTitle>
+            <CardDescription className="leading-relaxed">
               This workflow automates testing and deployment, providing immediate feedback on pull requests with
               context-specific deployment previews.
             </CardDescription>
@@ -154,34 +179,36 @@ export default function MCPWorkflowsPage() {
           <CardContent className="space-y-6">
             <div>
               <p className="font-semibold mb-2">Goal:</p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Ensure every code change related to the frontend is automatically tested and deployed to a preview
                 environment on Vercel.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h4 className="font-semibold mb-2">1. Trigger (Git Push):</h4>
-                <p className="text-sm text-muted-foreground">
+                <h4 className="font-semibold mb-3">1. Trigger (Git Push):</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   A frontend developer pushes a commit to a feature branch (e.g.,{" "}
-                  <code className="bg-muted px-1 rounded">feat/new-author-page</code>) and creates a Pull Request.
+                  <code className="bg-muted px-1 rounded text-xs">feat/new-author-page</code>) and creates a Pull
+                  Request.
                 </p>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">2. Automation (GitHub Actions):</h4>
-                <p className="text-sm text-muted-foreground mb-3">
+                <h4 className="font-semibold mb-3">2. Automation (GitHub Actions):</h4>
+                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                   The push triggers a workflow defined in{" "}
-                  <code className="bg-muted px-1 rounded">.github/workflows/ci-cd.yml</code>.
+                  <code className="bg-muted px-1 rounded text-xs">.github/workflows/ci-cd.yml</code>.
                 </p>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">3. Execution (YAML Workflow):</h4>
+                <h4 className="font-semibold mb-3">3. Execution (YAML Workflow):</h4>
                 <div className="relative">
-                  <pre className="bg-muted p-4 rounded-md text-sm font-mono overflow-x-auto max-h-96 overflow-y-auto">
-                    <code>{`# .github/workflows/ci-cd.yml
+                  <pre className="bg-muted p-4 rounded-md text-xs font-mono overflow-x-auto max-h-96 overflow-y-auto scrollbar-thin">
+                    <code className="whitespace-pre">
+                      {`# .github/workflows/ci-cd.yml
 name: Vercel CI/CD
 
 on: [push]
@@ -213,12 +240,13 @@ jobs:
           vercel-token: \${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: \${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: \${{ secrets.VERCEL_PROJECT_ID }}
-          github-comment: true`}</code>
+          github-comment: true`}
+                    </code>
                   </pre>
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="absolute top-2 right-2 h-6 w-6 p-0"
+                    className="absolute top-2 right-2 h-6 w-6 p-0 opacity-70 hover:opacity-100"
                     onClick={() =>
                       copyToClipboard(`# .github/workflows/ci-cd.yml
 name: Vercel CI/CD
@@ -261,13 +289,15 @@ jobs:
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">4. Result (Seamless Feedback):</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h4 className="font-semibold mb-3">4. Result (Seamless Feedback):</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                   <li>• The tests are run automatically.</li>
                   <li>
                     • If they pass, Vercel builds and deploys a <strong>unique preview URL</strong> for that specific
                     pull request (e.g.,{" "}
-                    <code className="bg-muted px-1 rounded">oreilly-frontend-git-feat-new-author-page.vercel.app</code>
+                    <code className="bg-muted px-1 rounded text-xs break-all">
+                      oreilly-frontend-git-feat-new-author-page.vercel.app
+                    </code>
                     ).
                   </li>
                   <li>
@@ -283,8 +313,8 @@ jobs:
         {/* Workflow 3: Local AI-Powered Git Hooks */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">### Workflow 3: Local AI-Powered Git Hooks</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-xl">Workflow 3: Local AI-Powered Git Hooks</CardTitle>
+            <CardDescription className="leading-relaxed">
               This workflow uses a pre-commit hook to ensure code quality before it's even committed, using AI to
               automatically fix issues.
             </CardDescription>
@@ -292,27 +322,27 @@ jobs:
           <CardContent className="space-y-6">
             <div>
               <p className="font-semibold mb-2">Goal:</p>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground leading-relaxed">
                 Automate code linting and formatting, and generate commit messages.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h4 className="font-semibold mb-2">1. Setup (Local Environment):</h4>
-                <p className="text-sm text-muted-foreground mb-3">
+                <h4 className="font-semibold mb-3">1. Setup (Local Environment):</h4>
+                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                   The developer installs <strong>husky</strong>, a tool for managing Git hooks.
                 </p>
 
                 <div className="relative">
-                  <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto">
+                  <pre className="bg-muted p-3 rounded-md text-sm font-mono overflow-x-auto scrollbar-thin">
                     <code>{`# Install and configure husky
 npx husky init`}</code>
                   </pre>
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="absolute top-2 right-2 h-6 w-6 p-0"
+                    className="absolute top-2 right-2 h-6 w-6 p-0 opacity-70 hover:opacity-100"
                     onClick={() => copyToClipboard("# Install and configure husky\nnpx husky init")}
                   >
                     <Copy className="h-3 w-3" />
@@ -321,16 +351,17 @@ npx husky init`}</code>
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">
-                  2. Configuration (<code className="bg-muted px-1 rounded">.husky/pre-commit</code>):
+                <h4 className="font-semibold mb-3">
+                  2. Configuration (<code className="bg-muted px-1 rounded text-xs">.husky/pre-commit</code>):
                 </h4>
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
                   This file contains a script that runs before every commit.
                 </p>
 
                 <div className="relative">
-                  <pre className="bg-muted p-4 rounded-md text-sm font-mono overflow-x-auto max-h-80 overflow-y-auto">
-                    <code>{`#!/bin/sh
+                  <pre className="bg-muted p-4 rounded-md text-xs font-mono overflow-x-auto max-h-80 overflow-y-auto scrollbar-thin">
+                    <code className="whitespace-pre">
+                      {`#!/bin/sh
 if [[ \$(dirname "\$0") == */.husky/* ]]; then
   echo "Running Pre-Commit Hooks..."
 
@@ -347,12 +378,13 @@ if [[ \$(dirname "\$0") == */.husky/* ]]; then
   # based on the staged changes (the 'diff') and generates a structured,
   # conventional commit message like "feat(author): build new author page component"
   npx opencommit
-fi`}</code>
+fi`}
+                    </code>
                   </pre>
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="absolute top-2 right-2 h-6 w-6 p-0"
+                    className="absolute top-2 right-2 h-6 w-6 p-0 opacity-70 hover:opacity-100"
                     onClick={() =>
                       copyToClipboard(`#!/bin/sh
 if [[ \$(dirname "\$0") == */.husky/* ]]; then
@@ -380,23 +412,26 @@ fi`)
               </div>
 
               <div>
-                <h4 className="font-semibold mb-2">3. Execution (Developer Action):</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h4 className="font-semibold mb-3">3. Execution (Developer Action):</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                   <li>
-                    • A developer finishes their work and runs <code className="bg-muted px-1 rounded">git commit</code>
-                    .
+                    • A developer finishes their work and runs{" "}
+                    <code className="bg-muted px-1 rounded text-xs">git commit</code>.
                   </li>
                   <li>
                     • <strong>Automatically</strong>, before the commit is finalized:
                   </li>
                   <li className="ml-4">
-                    - <code className="bg-muted px-1 rounded">npx eslint --fix</code> runs, cleaning up any formatting
-                    or simple logical errors.
+                    - <code className="bg-muted px-1 rounded text-xs">npx eslint --fix</code> runs, cleaning up any
+                    formatting or simple logical errors.
                   </li>
                   <li className="ml-4">
-                    - <code className="bg-muted px-1 rounded">opencommit</code> analyzes the code changes (the "diff")
-                    and generates a structured, conventional commit message like{" "}
-                    <code className="bg-muted px-1 rounded">"feat(author): build new author page component"</code>.
+                    - <code className="bg-muted px-1 rounded text-xs">opencommit</code> analyzes the code changes (the
+                    "diff") and generates a structured, conventional commit message like{" "}
+                    <code className="bg-muted px-1 rounded text-xs">
+                      "feat(author): build new author page component"
+                    </code>
+                    .
                   </li>
                   <li className="ml-4">- The developer simply reviews and approves the message.</li>
                 </ul>
@@ -404,7 +439,7 @@ fi`)
             </div>
 
             <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 This workflow enforces consistency, improves code quality, and removes the mental overhead of writing
                 commit messages, allowing the developer to stay focused on the migration logic.
               </p>

@@ -62,7 +62,7 @@ export function Sidebar() {
         <div className="flex h-full flex-col">
           {/* Header */}
           <div className="flex h-16 items-center border-b border-sidebar-border px-6">
-            <h1 className="text-lg font-semibold text-sidebar-foreground text-balance">{"O'Reilly Migration Plan"}</h1>
+            <h1 className="text-lg font-semibold text-sidebar-foreground">{"O'Reilly Migration Plan"}</h1>
           </div>
 
           {/* Navigation */}

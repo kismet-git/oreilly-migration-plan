@@ -1,3 +1,5 @@
+import { RoleBadge } from "@/components/ui/role-badge"
+
 interface Task {
   id: string
   description: string
@@ -7,18 +9,6 @@ interface Task {
 
 interface TaskTableProps {
   tasks: Task[]
-}
-
-const roleColors: Record<string, string> = {
-  "Lead Developer": "bg-purple-600 text-white",
-  "UI/UX Designer": "bg-blue-600 text-white",
-  "Backend Developer": "bg-green-600 text-white",
-  "Frontend Developer": "bg-orange-600 text-white",
-  "DevOps Engineer": "bg-red-600 text-white",
-  "Product Manager": "bg-indigo-600 text-white",
-  "QA Engineer": "bg-yellow-600 text-black",
-  "Data Analyst": "bg-pink-600 text-white",
-  "Technical Writer": "bg-teal-600 text-white",
 }
 
 export function TaskTable({ tasks }: TaskTableProps) {
@@ -44,18 +34,11 @@ export function TaskTable({ tasks }: TaskTableProps) {
                 }`}
               >
                 <td className="px-4 py-3 text-sm font-mono text-muted-foreground">{task.id}</td>
-                <td className="px-4 py-3 text-sm text-foreground">{task.description}</td>
+                <td className="px-4 py-3 text-sm text-foreground leading-relaxed">{task.description}</td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap gap-1">
                     {task.roles.map((role, roleIndex) => (
-                      <span
-                        key={roleIndex}
-                        className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          roleColors[role] || "bg-gray-600 text-white"
-                        }`}
-                      >
-                        {role}
-                      </span>
+                      <RoleBadge key={roleIndex} role={role} />
                     ))}
                   </div>
                 </td>
@@ -76,20 +59,13 @@ export function TaskTable({ tasks }: TaskTableProps) {
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono text-muted-foreground bg-muted px-2 py-1 rounded">{task.id}</span>
             </div>
-            <h3 className="text-sm font-medium text-foreground mb-3">{task.description}</h3>
+            <h3 className="text-sm font-medium text-foreground mb-3 leading-relaxed">{task.description}</h3>
             <div className="space-y-2">
               <div>
                 <p className="text-xs font-semibold text-muted-foreground mb-1">Primary Role(s)</p>
                 <div className="flex flex-wrap gap-1">
                   {task.roles.map((role, roleIndex) => (
-                    <span
-                      key={roleIndex}
-                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        roleColors[role] || "bg-gray-600 text-white"
-                      }`}
-                    >
-                      {role}
-                    </span>
+                    <RoleBadge key={roleIndex} role={role} />
                   ))}
                 </div>
               </div>
